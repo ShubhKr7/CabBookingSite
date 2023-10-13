@@ -3,34 +3,6 @@ function goBack() {
     window.location.href = "index.html";
 }
 
-// Array to store booked rides
-const bookedRides = [];
-// Function to handle form submission and display booked rides
-document.getElementById("bookingForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const pickupLocation = document.getElementById("pickupLocation").value;
-    const destination = document.getElementById("destination").value;
-    const passengerCount = document.getElementById("passengerCount").value;
-
-    // Create a booked ride object
-    const bookedRide = {
-        pickupLocation,
-        destination,
-        passengerCount
-    };
-
-    bookedRides.push(bookedRide);
-
-    // Clear form fields
-    document.getElementById("pickupLocation").value = "";
-    document.getElementById("destination").value = "";
-    document.getElementById("passengerCount").value = "";
-
-    // Update the list of booked rides
-    displayBookedRides();
-});
-
 // Function to display booked rides
 function displayBookedRides() {
     const bookedRidesList = document.getElementById("bookedRides");
@@ -86,3 +58,48 @@ function displayBookedRides() {
 }
 
 displayBookedRides();
+// Function to go back to the home page
+function goBack() {
+    window.location.href = "index.html";
+}
+
+// Array to store booked rides
+const bookedRides = [];
+
+// Function to handle form submission and display booked rides
+document.getElementById("bookingForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const pickupLocation = document.getElementById("pickupLocation").value;
+    const destination = document.getElementById("destination").value;
+    const passengerCount = document.getElementById("passengerCount").value;
+
+    // Create a booked ride object
+    const bookedRide = {
+        pickupLocation,
+        destination,
+        passengerCount
+    };
+
+    bookedRides.push(bookedRide);
+
+    // Clear form fields
+    document.getElementById("pickupLocation").value = "";
+    document.getElementById("destination").value = "";
+    document.getElementById("passengerCount").value = "";
+
+    // Update the list of booked rides
+    displayBookedRides();
+});
+
+// Function to display booked rides
+function displayBookedRides() {
+    const bookedRidesList = document.getElementById("bookedRides");
+    bookedRidesList.innerHTML = ""; // Clear the list
+
+    bookedRides.forEach((ride, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>Ride ${index + 1}:</strong> From ${ride.pickupLocation} to ${ride.destination} | Passengers: ${ride.passengerCount}`;
+        bookedRidesList.appendChild(listItem);
+    });
+}
