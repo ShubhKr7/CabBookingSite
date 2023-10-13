@@ -5,7 +5,6 @@ function goBack() {
 
 // Array to store booked rides
 const bookedRides = [];
-
 // Function to handle form submission and display booked rides
 document.getElementById("bookingForm").addEventListener("submit", function (e) {
     e.preventDefault();
